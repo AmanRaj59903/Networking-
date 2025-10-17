@@ -1,0 +1,132 @@
+🧩 Task 1: Handling Multiple Exceptions with Input and Files
+
+# Task 1: Handling Multiple Exceptions with Input and Files
+
+try:
+    # Step 1: File handling
+    file_name = input("Enter the file name: ")
+    with open(file_name, 'r') as file:
+        print("File opened successfully!")
+
+    # Step 2: Integer input
+    number = int(input("Enter an integer: "))
+
+    # Step 3: Division
+    divisor = int(input("Enter a divisor: "))
+    result = number / divisor
+    print("Result of division:", result)
+
+except FileNotFoundError:
+    print("Error: File not found.")
+except ValueError:
+    print("Error: Please enter a valid integer.")
+except ZeroDivisionError:
+    print("Error: Division by zero is not allowed.")
+
+📘 Sample Output 1 (File Not Found):
+
+Enter the file name: data.txt
+Error: File not found.
+
+📘 Sample Output 2 (Value Error):
+
+Enter the file name: sample.txt
+File opened successfully!
+Enter an integer: abc
+Error: Please enter a valid integer.
+
+📘 Sample Output 3 (Division by Zero):
+
+Enter the file name: sample.txt
+File opened successfully!
+Enter an integer: 10
+Enter a divisor: 0
+Error: Division by zero is not allowed.
+
+
+---
+
+🧮 Task 2: Student Data Management
+
+# Task 2: Student Data Management
+
+def add_student(students):
+    name = input("Enter student name: ")
+    marks = []
+    for i in range(1, 4):
+        mark = float(input(f"Enter marks for subject {i}: "))
+        marks.append(mark)
+    students[name] = marks
+    print(f"Student '{name}' added successfully!\n")
+
+
+def calculate_percentage(students):
+    name = input("Enter student name to calculate percentage: ")
+    if name in students:
+        marks = students[name]
+        percentage = sum(marks) / len(marks)
+        print(f"{name}'s Percentage: {percentage:.2f}%\n")
+    else:
+        print("Student not found.\n")
+
+
+# Main Program
+students = {}
+
+while True:
+    print("===== Student Data Management =====")
+    print("1. Add a new student")
+    print("2. Calculate a student's percentage")
+    print("3. Exit")
+
+    choice = input("Enter your choice (1/2/3): ")
+
+    if choice == '1':
+        add_student(students)
+    elif choice == '2':
+        calculate_percentage(students)
+    elif choice == '3':
+        print("Exiting the program. Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please try again.\n")
+
+📘 Sample Output:
+
+===== Student Data Management =====
+1. Add a new student
+2. Calculate a student's percentage
+3. Exit
+Enter your choice (1/2/3): 1
+Enter student name: Aman
+Enter marks for subject 1: 80
+Enter marks for subject 2: 90
+Enter marks for subject 3: 85
+Student 'Aman' added successfully!
+
+Enter your choice (1/2/3): 2
+Enter student name to calculate percentage: Aman
+Aman's Percentage: 85.00%
+
+Enter your choice (1/2/3): 3
+Exiting the program. Goodbye!
+
+
+---
+
+🔢 Task 3: Sum of N Natural Numbers
+
+# Task 3: Find the Sum of N Natural Numbers
+
+n = int(input("Enter a number: "))
+
+if n < 0:
+    print("Please enter a positive integer.")
+else:
+    total = n * (n + 1) // 2
+    print("Sum of", n, "natural numbers is:", total)
+
+📘 Sample Output:
+
+Enter a number: 5
+Sum of 5 natural numbers is: 15
