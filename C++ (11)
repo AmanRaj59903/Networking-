@@ -1,0 +1,91 @@
+# Creating dictionary of students with their courses and grades
+students = {
+    "Alice": {"Math": 85, "Science": 90},
+    "Bob": {"Math": 78, "Science": 82},
+    "Charlie": {"Math": 92, "Science": 88}
+}
+
+# 1. Print the dictionary
+print("Students Dictionary:")
+print(students)
+
+# 2. Print each student's average grade
+print("\nAverage Grades:")
+for name, courses in students.items():
+    avg = sum(courses.values()) / len(courses)
+    print(f"{name}'s average grade: {avg:.2f}")
+
+# 3. Add a new course and grade for one student
+students["Alice"]["English"] = 95
+
+print("\nUpdated Student Data (after adding English):")
+print(students)
+
+
+
+# 1. Data Setup
+theaters = [
+    {
+        "name": "PVR Cinemas",
+        "screens": [
+            {
+                "screen_number": 1,
+                "seats": {"A1": False, "A2": False, "A3": True, "A4": False}
+            },
+            {
+                "screen_number": 2,
+                "seats": {"B1": True, "B2": False, "B3": False, "B4": False}
+            }
+        ]
+    },
+    {
+        "name": "INOX",
+        "screens": [
+            {
+                "screen_number": 1,
+                "seats": {"C1": False, "C2": False, "C3": False, "C4": True}
+            }
+        ]
+    }
+]
+
+# 2. Print all theaters
+print("Theater Data:")
+for theater in theaters:
+    print(theater)
+
+# 3. Show Availability
+def show_available_seats(theater_name, screen_number):
+    for theater in theaters:
+        if theater["name"] == theater_name:
+            for screen in theater["screens"]:
+                if screen["screen_number"] == screen_number:
+                    available = [seat for seat, booked in screen["seats"].items() if not booked]
+                    print(f"Available seats in {theater_name} (Screen {screen_number}): {available}")
+
+show_available_seats("PVR Cinemas", 1)
+
+# 4. Book a Seat
+def book_seat(theater_name, screen_number, seat_id):
+    for theater in theaters:
+        if theater["name"] == theater_name:
+            for screen in theater["screens"]:
+                if screen["screen_number"] == screen_number:
+                    if not screen["seats"].get(seat_id):
+                        screen["seats"][seat_id] = True
+                        print(f"Seat {seat_id} successfully booked in {theater_name} Screen {screen_number}")
+                    else:
+                        print(f"Seat {seat_id} is already booked!")
+
+book_seat("PVR Cinemas", 1, "A2")
+
+# 5. Cancel a Screen
+def cancel_screen(theater_name, screen_number):
+    for theater in theaters:
+        if theater["name"] == theater_name:
+            theater["screens"] = [s for s in theater["screens"] if s["screen_number"] != screen_number]
+            print(f"Screen {screen_number} removed from {theater_name}")
+
+cancel_screen("INOX", 1)
+
+
