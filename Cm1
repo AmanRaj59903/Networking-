@@ -1,0 +1,83 @@
+🧩 PROGRAM 3: File Handling Utility – Text Analyzer
+
+# Program 3: File Handling Utility – Text Analyzer
+
+def get_unique_cities(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            lines = file.readlines()[1:]  # Skip header line
+            cities = []
+            for line in lines:
+                parts = line.strip().split(',')
+                if len(parts) == 4:
+                    city = parts[-1].strip()
+                    if city not in cities:
+                        cities.append(city)
+            return cities
+    except FileNotFoundError:
+        print("Error: File not found. Please check the path.")
+        return None
+
+
+# Main Program
+path = input("Enter path to a .txt file: ")
+unique_cities = get_unique_cities(path)
+
+if unique_cities:
+    print("\nUnique Cities:")
+    for city in unique_cities:
+        print(city)
+
+📘 Sample Input:
+
+Enter path to a .txt file: sample.txt
+
+📘 Sample Output:
+
+Unique Cities:
+Mumbai
+Hyderabad
+
+
+---
+
+🧺 PROGRAM 4: List Methods — Clean & Normalize Shopping List
+
+# Program 4: List Methods — Clean & Normalize Shopping List
+
+def clean_shopping_list(raw_list):
+    cleaned_list = []
+    counts = {}
+
+    for item in raw_list:
+        clean_item = item.strip().lower()
+        counts[clean_item] = counts.get(clean_item, 0) + 1
+        if clean_item not in cleaned_list:
+            cleaned_list.append(clean_item)
+
+    cleaned_list.sort()
+    reversed_list = cleaned_list[::-1]
+
+    # Display counts
+    print("Counts:")
+    for item, count in counts.items():
+        print(f"{item}: {count}")
+
+    print("\nClean list (sorted):", cleaned_list)
+    print("Reversed:", reversed_list)
+
+
+# Main Program
+items = [" Milk", "eggs", "MILK ", "bread", "Eggs", " butter "]
+clean_shopping_list(items)
+
+📘 Sample Output:
+
+Counts:
+milk: 2
+eggs: 2
+bread: 1
+butter: 1
+
+Clean list (sorted): ['bread', 'butter', 'eggs', 'milk']
+Reversed: ['milk', 'eggs', 'butter', 'bread']
