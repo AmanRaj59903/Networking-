@@ -1,0 +1,41 @@
+def get_unique_cities(file_path):
+    try:
+        with open(file_path, "r") as f:
+            next(f)  # Skip header
+            cities = []
+            for line in f:
+                parts = line.strip().split(",")
+                if len(parts) >= 4:
+                    city = parts[3].strip()
+                    if city not in cities:
+                        cities.append(city)
+            return cities
+    except FileNotFoundError:
+        print("File not found. Please check the path.")
+        return []
+
+path = input("Enter path to a .txt file: ")
+unique_cities = get_unique_cities(path)
+for city in unique_cities:
+    print(city)
+raw_list = [" Milk", "eggs", "MILK ", "bread", "Eggs", " butter "]
+
+clean_list = []
+counts = {}
+
+for item in raw_list:
+    cleaned = item.strip().lower()
+    counts[cleaned] = counts.get(cleaned, 0) + 1
+    if cleaned not in clean_list:
+        clean_list.append(cleaned)
+
+print("Counts:", end=" ")
+for k, v in counts.items():
+    print(f"{k}: {v}", end=", ")
+print()
+
+clean_list.sort()
+print("Clean list (sorted):", clean_list)
+
+clean_list.reverse()
+print("Reversed:", clean_list)
